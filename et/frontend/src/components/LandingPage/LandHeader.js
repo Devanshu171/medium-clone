@@ -1,6 +1,5 @@
 import { Avatar, Image, Popover } from "antd";
 import React, { useState } from "react";
-// import Avatar from "react-avatar";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout, selectUser } from "../../features/userSlice";
@@ -12,7 +11,6 @@ const LandHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  // console.log(user);
 
   const Title = () => {
     return (

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Skeleton } from "antd";
 
-const LandingMainPage = ({userDetails}) => {
+const LandingMainPage = ({ userDetails }) => {
   const [tab, setTab] = useState(0);
   console.log(userDetails);
   const [stories, setStories] = useState();
@@ -19,7 +19,6 @@ const LandingMainPage = ({userDetails}) => {
       await axios
         .get("/api/stories")
         .then((res) => {
-          // console.log(res.data.data);
           setLoading(false);
           setStories(res.data.data?.slice(0, 10));
         })
@@ -37,7 +36,9 @@ const LandingMainPage = ({userDetails}) => {
         .get("/api/user")
         .then((res) => {
           if (res.data.status) {
-            let _users = res.data?.data?.filter((data) => data?._id !== userDetails?._id)
+            let _users = res.data?.data?.filter(
+              (data) => data?._id !== userDetails?._id
+            );
             setUsers(_users);
             setUserLoading(false);
           }
@@ -76,8 +77,6 @@ const LandingMainPage = ({userDetails}) => {
           </div>
           {tab === 0 && (
             <>
-              {/* <div className="follow"> */}
-              {/* <h2>Who to follow</h2> */}
               {users?.map((data) => (
                 <WhoToFollow key={data?._id} data={data} />
               ))}
@@ -112,7 +111,11 @@ const LandingMainPage = ({userDetails}) => {
               })}
 
               {stories?.map((data) => (
-                <LandingRecommendedPost userDetails = {userDetails} key={data?._id} data={data} />
+                <LandingRecommendedPost
+                  userDetails={userDetails}
+                  key={data?._id}
+                  data={data}
+                />
               ))}
 
               {/* <LandingRecommendedPost />
@@ -151,7 +154,6 @@ const LandingMainPage = ({userDetails}) => {
               );
             })}
 
-            
             {/* <WhoToFollow />
             <WhoToFollow />
             <WhoToFollow />
